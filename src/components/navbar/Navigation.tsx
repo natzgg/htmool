@@ -11,55 +11,49 @@ import {
 import NavItem from "./NavItem";
 
 const Navigation = () => {
+  console.log(window.location.pathname);
   const routes = [
     {
       label: "Dashboard",
       href: "/",
       icon: TbSmartHome,
       hasItems: true,
-      active: true,
     },
     {
       label: "Properties",
       href: "/properties",
       icon: FaBuilding,
       hasItems: false,
-      active: false,
     },
     {
       label: "New Applicant",
       href: "/new-applicant",
       icon: IoPersonAddSharp,
       hasItems: true,
-      active: false,
     },
     {
       label: "Tenants",
       href: "/tenants",
       icon: TbUsersGroup,
       hasItems: false,
-      active: false,
     },
     {
       label: "Actions",
       href: "/actions",
       icon: TbClick,
       hasItems: true,
-      active: false,
     },
     {
       label: "Inspections",
       href: "/inspections",
       icon: TbZoomPan,
       hasItems: true,
-      active: false,
     },
     {
       label: "Compliance",
       href: "/compliance",
       icon: TbFilePencil,
       hasItems: true,
-      active: false,
     },
   ];
   return (
@@ -71,7 +65,7 @@ const Navigation = () => {
             label={route.label}
             icon={route.icon}
             hasItems={route.hasItems}
-            active={route.active}
+            active={window.location.pathname == route.href}
           ></NavItem>
         ))}
       </div>
