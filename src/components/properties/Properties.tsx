@@ -21,7 +21,7 @@ const Properties = () => {
           </div>
         </div>
 
-        <div className="grid gap-5 mt-5 w-full">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 w-full">
           <PropertyCard />
           <PropertyCard />
           <PropertyCard />
