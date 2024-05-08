@@ -1,4 +1,5 @@
 import TenantFilter from "./TenantFilter";
+import { TenantTable } from "./TenantTable";
 
 const TenantsCard = () => {
   return (
@@ -9,6 +10,7 @@ const TenantsCard = () => {
           <TenantFilter />
         </div>
       </div>
+      <TenantTable />
     </div>
   );
 };
