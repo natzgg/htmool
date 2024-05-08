@@ -65,7 +65,7 @@ const Navigation = () => {
             label={route.label}
             icon={route.icon}
             hasItems={route.hasItems}
-            active={window.location.pathname == route.href}
+            active={window.location.pathname === route.href}
             href={route.href}
           ></NavItem>
         ))}

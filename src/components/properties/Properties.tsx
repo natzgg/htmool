@@ -1,4 +1,3 @@
-import { FaBuilding } from "react-icons/fa6";
 import PropertyCard from "./PropertyCard";
 import PropertiesHeader from "./PropertiesHeader";
 
