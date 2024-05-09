@@ -10,10 +10,14 @@ import {
   getPaginationRowModel,
   PaginationState,
   useReactTable,
+  ColumnFiltersState,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
 import { Tenant } from "../utils/type";
 import TenantTableFooter from "./TenantTableFooter";
 import { makeData } from "../utils/fakeData";
+import TenantSearch from "./TenantSearch";
+import TenantFilter from "./TenantFilter";
 
 const columnHelper = createColumnHelper<Tenant>();
 
@@ -22,6 +26,7 @@ const columns = [
     cell: (info) => <span className="font-medium">{info.getValue()}</span>,
     header: () => <span>Tenant</span>,
     footer: (info) => info.column.id,
+    filterFn: "includesString",
   }),
   columnHelper.accessor((row) => row.property, {
     id: "property",
@@ -71,11 +76,11 @@ const columns = [
 
 export const TenantTable = () => {
   const [data, _setData] = useState(() => makeData(12));
-  const rerender = useReducer(() => ({}), {})[1];
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 10,
   });
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
     data,
@@ -84,9 +89,15 @@ export const TenantTable = () => {
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onPaginationChange: setPagination,
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
       pagination,
+      columnFilters,
     },
+    debugTable: true,
+    debugHeaders: true,
+    debugColumns: false,
   });
 
   return (
@@ -94,26 +105,29 @@ export const TenantTable = () => {
       id="table"
       className="w-full overflow-x-auto font-publicSans text-gray-600 mb-5"
     >
+      <TenantFilter table={table} />
       <table className="w-full">
         <thead className="border-t border-b text-left">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  className={cn(
-                    "p-4 font-medium uppercase text-sm",
-                    header.column.getCanSort() && "cursor-pointer select-none"
-                  )}
-                  onClick={header.column.getToggleSortingHandler()}
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
+                <>
+                  <th
+                    key={header.id}
+                    className={cn(
+                      "p-4 font-medium uppercase text-sm",
+                      header.column.getCanSort() && "cursor-pointer select-none"
+                    )}
+                    onClick={header.column.getToggleSortingHandler()}
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </th>
+                </>
               ))}
             </tr>
           ))}

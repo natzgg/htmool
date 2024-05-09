@@ -18,7 +18,9 @@ const Dropdown = () => {
 
         {collapsed && (
           <ul
-            className={cn("absolute group-hover:block bg-transparent w-full")}
+            className={cn(
+              "absolute group-hover:block bg-transparent w-full z-10"
+            )}
           >
             <div className="p-2 h-full rounded mt-0.5 bg-white space-y-1.5 cursor-pointer">
               <li
