@@ -49,9 +49,9 @@ const columns = [
       <span
         className={cn(
           "p-1.5 rounded font-bold text-sm",
-          info.getValue() == "Paid"
-            ? "bg-green-500/40 text-green-500"
-            : "bg-red-500/40 text-red-500"
+          info.getValue() === "Paid"
+            ? "bg-green-400/20 text-green-400"
+            : "bg-red-400/20 text-red-400"
         )}
       >
         {info.getValue()}
@@ -62,7 +62,7 @@ const columns = [
   columnHelper.accessor("action", {
     header: () => <span>Action</span>,
     cell: () => (
-      <button onClick={() => {}}>
+      <button onClick={() => {}} className="">
         <BsThreeDotsVertical className="w-5 h-5" />
       </button>
     ),
@@ -70,7 +70,7 @@ const columns = [
 ];
 
 export const TenantTable = () => {
-  const [data, _setData] = useState(() => makeData(100));
+  const [data, _setData] = useState(() => makeData(12));
   const rerender = useReducer(() => ({}), {})[1];
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -92,7 +92,7 @@ export const TenantTable = () => {
   return (
     <div
       id="table"
-      className="w-full overflow-x-auto font-publicSans text-gray-600"
+      className="w-full overflow-x-auto font-publicSans text-gray-600 mb-5"
     >
       <table className="w-full">
         <thead className="border-t border-b text-left">
