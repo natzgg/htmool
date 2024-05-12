@@ -43,7 +43,7 @@ const TenantSearch = ({ column }: { column: Column<any, unknown> }) => {
       value={(columnFilterValue ?? "") as string}
       onChange={(value) => column.setFilterValue(value)}
       placeholder={`Search Tenant`}
-      className="w-36 border shadow rounded"
+      className="w-120 shadow rounded p-2 focus:ring-2 focus:ring-blue-500 outline-none"
     />
   );
 };

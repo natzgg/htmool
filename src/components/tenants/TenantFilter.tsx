@@ -19,8 +19,10 @@ const TenantFilter = ({ table }: { table: Table<Tenant> }) => {
 
   return (
     <div className="p-4">
-      <Dropdown />
-      <TenantSearch column={column} />
+      <div className="flex flex-col lg:flex-row w-full justify-between gap-2">
+        <Dropdown />
+        <TenantSearch column={column} />
+      </div>
     </div>
   );
 };

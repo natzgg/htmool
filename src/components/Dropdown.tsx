@@ -9,7 +9,10 @@ const Dropdown = () => {
   const items = ["Applications", "Current Tenants", "Ex Tenants", "Declined"];
 
   return (
-    <div onClick={() => setCollapsed(!collapsed)} className="relative group">
+    <div
+      onClick={() => setCollapsed(!collapsed)}
+      className="relative group lg:w-40"
+    >
       <div className="h-max w-max min-w-full border rounded-md shadow-sm">
         <button className="w-full flex items-center justify-between p-2 rounded-md space-x-6">
           <span>{value}</span>
